@@ -47,7 +47,7 @@ function Thumb({ d, pose, ver }) {
     : <div style={{ width: '100%', height: '100%', background: 'var(--fill-3, rgba(127,127,127,.15))' }} />
 }
 
-const tile = { position: 'relative', aspectRatio: '3 / 4', borderRadius: 12, overflow: 'hidden', border: 0, padding: 0, cursor: 'pointer', background: 'var(--fill-3, rgba(127,127,127,.15))', color: 'inherit' }
+const tile = { position: 'relative', display: 'block', width: '100%', aspectRatio: '3 / 4', borderRadius: 12, overflow: 'hidden', border: 0, padding: 0, cursor: 'pointer', background: 'var(--fill-3, rgba(127,127,127,.15))', color: 'inherit' }
 
 export default function CheckIns() {
   const nav = useNavigate()
@@ -99,12 +99,12 @@ export default function CheckIns() {
     </div>
 
     <div className="card">
-      <div className="row between" style={{ marginBottom: 12, gap: 12 }}>
-        <div className="muted small">Date</div>
-        <input className="field" type="date" value={date} max={todayISO()} onChange={e => e.target.value && setDate(e.target.value)} style={{ maxWidth: 180 }} />
-      </div>
+      <label className="measure-date">
+        <span>Date</span>
+        <input className="field" type="date" value={date} max={todayISO()} onChange={e => e.target.value && setDate(e.target.value)} />
+      </label>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
-        {POSES.map(p => <div key={p.key}>
+        {POSES.map(p => <div key={p.key} style={{ minWidth: 0 }}>
           <button type="button" style={tile} disabled={!!busy} onClick={() => inputs.current[p.key]?.click()} aria-label={`${p.label} photo`}>
             {has(p.key)
               ? <Thumb d={date} pose={p.key} ver={ver} />
