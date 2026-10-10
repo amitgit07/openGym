@@ -101,7 +101,8 @@ export default function CheckIns() {
     <div className="card">
       <label className="measure-date">
         <span>Date</span>
-        <input className="field" type="date" value={date} max={todayISO()} onChange={e => e.target.value && setDate(e.target.value)} />
+        <input className="field" type="date" value={date} max={todayISO()} onChange={e => e.target.value && setDate(e.target.value)}
+          style={{ display: 'block', boxSizing: 'border-box', minWidth: 0, maxWidth: '100%', WebkitAppearance: 'none', appearance: 'none', textAlign: 'start' }} />
       </label>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
         {POSES.map(p => <div key={p.key} style={{ minWidth: 0 }}>
